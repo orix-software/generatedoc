@@ -4,7 +4,7 @@
 from __future__ import print_function
 
 from pprint import pprint
-
+import sys
 import fileinput
 
 #
@@ -44,7 +44,17 @@ def_macro = False
 
 last_label = ''
 
-for line in fileinput.input():
+path_to_file = ""
+filename = ""
+
+if len(sys.argv) != 3:
+    filename = fileinput.input()
+else:
+
+    filename = sys.argv[1]
+    path_to_file = sys.argv[2]
+
+for line in filename:
 
     line = line.rstrip()
 
@@ -520,10 +530,20 @@ for line in fileinput.input():
                 line_out = ''
 
         if len(line_out) != 0:
-            print(line_out)
+            if path_to_file != "":
+                try:
+                    # Écriture de "toto" dans le fichier spécifié
+                    with open(path_to_file, 'w') as file:
+                        file.write(line_out)
+                    print(f"'Write into  : {path_to_file}")
+                except Exception as e:
+                    print(f"Write error : {e}")
+                    sys.exit(1)
+            else:
+                print(line_out)
 
     # else:
     #     print('')
 
-fname = fileinput.filename()
+#fname = fileinput.filename()
 #print('\n'.join(['/**', ' * @file '+fname, '*/']))
