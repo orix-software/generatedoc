@@ -155,11 +155,11 @@ def transform(content):
                         line_out = line_out + '* ' +  memory[1] +' : '+ inst[1] +' ' + ' '.join(inst[2:])
 
                     if inst[0] == ';;@inputA':
-                        line_out = line_out + '* Accumulator : '+inst[1] +' ' + ' '.join(inst[2:])
+                        line_out = line_out + '* Accumulator : ' + inst[1] +' ' + ' '.join(inst[2:]) + '\n'
                     if inst[0] == ';;@inputX':
-                        line_out = line_out + '* X Register : '+inst[1] +' ' + ' '.join(inst[2:])
+                        line_out = line_out + '* X Register : ' + inst[1] +' ' + ' '.join(inst[2:]) + '\n'
                     if inst[0] == ';;@inputY':
-                        line_out = line_out + '* Y Register : '+inst[1] +' ' + ' '.join(inst[2:])
+                        line_out = line_out + '* Y Register : ' + inst[1] +' ' + ' '.join(inst[2:]) + '\n'
 
                 elif ';;@returns' in inst[0]:
                     if def_return_found == False:
