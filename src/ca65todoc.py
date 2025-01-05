@@ -156,8 +156,10 @@ def transform(content):
 
                     if inst[0] == ';;@inputA':
                         line_out = line_out + '* Accumulator : ' + inst[1] +' ' + ' '.join(inst[2:]) + '\n'
+
                     if inst[0] == ';;@inputX':
                         line_out = line_out + '* X Register : ' + inst[1] +' ' + ' '.join(inst[2:]) + '\n'
+
                     if inst[0] == ';;@inputY':
                         line_out = line_out + '* Y Register : ' + inst[1] +' ' + ' '.join(inst[2:]) + '\n'
 
