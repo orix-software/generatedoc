@@ -50,7 +50,7 @@ def transform(content):
     line_out = ''
     lines = content.splitlines()
     for line in lines:
-
+        line_out = ''
         line = line.rstrip()
 
         #if fileinput.isfirstline():
