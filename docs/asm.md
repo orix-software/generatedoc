@@ -4,6 +4,7 @@ A file must be named : xxxx.s without "_" at the beginning. '_' means that it's 
 
 Parser detect ';;@' lines
 
+```bash
 .proc bind
     ;;@brief Bind sockets
     ;;@inputX Socket id
@@ -20,6 +21,7 @@ Parser detect ';;@' lines
     ;;@returnsX XX
     ;;@returnsY XX
 .endproc
+```
 
 ## @Brief
 
@@ -31,10 +33,21 @@ Defines description of the routine
 
 Define X input register
 
+Example :
 
+```bash
 ;;@inputX Socket id
+```
 
 ## @inputY
+
+Define Y input register
+
+Example :
+
+```bash
+;;@inputY Socket id
+```
 
 ## @inputA
 
@@ -51,4 +64,3 @@ Define X input register
 ;;@modifyMEM_TR0
 
 It will displays that TR0 (memory offset will be modified)
-

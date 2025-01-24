@@ -47,7 +47,7 @@ def transform(content):
 
 
     last_label = ''
-
+    line_out = ''
     lines = content.splitlines()
     for line in lines:
 
