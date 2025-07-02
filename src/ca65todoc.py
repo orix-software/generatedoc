@@ -40,7 +40,7 @@ def transform(content):
     def_proc = False
     proc_name = ''
     def_macro = False
-
+    line_out = ''
     last_label = ''
 
     lines = content.splitlines()
