@@ -115,7 +115,7 @@ def transform(content):
                     line_out = line_out.replace(';;@`','')
 
                 elif inst[0] == ';;@brief':
-                    line_out = '***Description***\n\n' + ' '.join(inst[1:])
+                    line_out = '\n***Description***\n\n' + ' '.join(inst[1:])
                     line_out =  line_out + '\n'
 
                 elif inst[0] == ';;@explain':
