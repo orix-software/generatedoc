@@ -42,9 +42,10 @@ def transform(content):
     def_macro = False
     line_out = ''
     last_label = ''
-
+    i = 0
     lines = content.splitlines()
     for line in lines:
+
         line = line.rstrip()
 
         if line:
@@ -62,7 +63,7 @@ def transform(content):
                 else:
                     line_out = line[1:]
 
-                    # Au cas oÃ¹ il manque un ' ' entre le ';' et le commentaire
+                    # Au cas où il manque un ' ' entre le ';' et le commentaire
                     #if len(inst[0]) > 1 and inst[0][1] == ';':
                     #    line_out += inst[0][1:]
                     #    print('----', line)
@@ -97,7 +98,7 @@ def transform(content):
                     line_out = '!!! bug "' + ' '.join(inst[1:]) + '"'
 
                 elif inst[0] == ';;@note':
-                    line_out = '!!! note "' + ' '.join(inst[1:]) + '"'
+                    line_out = '\n!!! note "' + ' '.join(inst[1:]) + '"\n'
 
                 elif inst[0] == ';;@failure':
                     line_out = '!!! failure "' + ' '.join(inst[1:]) + '"'
@@ -178,12 +179,12 @@ def transform(content):
                         line_out = line_out + '* Y Register : '+inst[1] +' ' + ' '.join(inst[2:])
                     line_out = line_out + '\n'
 
-                # Appel Ã  une fonction
+                # Appel à une fonction
                 elif inst[0].lower() == 'jsr':
                     line_out = ''
 
                 # [--- TEST
-                # DÃ©claration d'une zone mÃ©moire
+                # DÃ©claration d'une zone mémoire
                 elif last_label and inst[0] in var_types:
                     if inst[0] in ['.byte', '.byt']:
 
@@ -401,7 +402,7 @@ def transform(content):
                         line_out = ''
 
 
-                # DÃ©claration d'une zone mÃ©moire
+                # Déclaration d'une zone mémoire
                 elif last_label and inst[0].lower() in var_types:
                     inst[0] = inst[0].lower()
                     if inst[0] in ['.byte', '.byt']:
@@ -470,7 +471,7 @@ def transform(content):
 
 
                 elif nb_inst >= 3:
-                    # DÃ©claration d'une variable / label
+                    # Déclaration d'une variable / label
                     if inst[1] in ['=', ':=']:
                         if nb_inst > 3 and inst[3] == ';':
                             line_out = ''
@@ -515,7 +516,9 @@ def transform(content):
                     if line[0] !=';':
                         last_label = ''
                     line_out = ''
-        line_out_all += line_out
+
+            i = i + 1
+            line_out_all += line_out
     return line_out_all
 
 
@@ -529,8 +532,8 @@ if len(sys.argv) != 3:
 else:
     filename = sys.argv[1]
     path_to_file = sys.argv[2]
-    print(filename)
-    print(path_to_file)
+    # print(filename)
+    # print(path_to_file)
     try:
         with open(filename, 'r') as file:
             content = file.read()
@@ -546,7 +549,7 @@ if len(line_out) != 0:
         # Écriture de "toto" dans le fichier spécifié
             with open(path_to_file, 'w') as file:
                 file.write(line_out)
-                print(f"'Write into  : {path_to_file}")
+                print(f"Write into  : {path_to_file}")
         except Exception as e:
             print(f"Write error : {e}")
             sys.exit(1)

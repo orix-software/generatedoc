@@ -49,6 +49,8 @@ Example :
 ;;@inputY Socket id
 ```
 
+## @note
+
 ## @inputA
 
 ## @returnsX
