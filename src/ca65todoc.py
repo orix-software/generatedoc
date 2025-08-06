@@ -105,15 +105,15 @@ def transform(content):
 
                 elif ';;@```' in inst[0]:
                     if inst[0] == ';;@```':
-                        line_out = '```'
+                        line_out = '\n```'
                         line_out =  line_out + '\n'
-                    else:
+                    elif inst[0] == ';;@```asm':
                         line_out = ''.join(inst[0:])
-                        line_out =  '\n***Example***\n\n' + line_out.replace(';;@','')
+                        line_out =  '\n***Example***\n\n' + line_out.replace(';;@asm','')
 
                 elif ';;@`' in inst[0]:
                     line_out = ' '.join(inst[0:])
-                    line_out = line_out.replace(';;@`','')
+                    line_out = line_out.replace(';;@`','\n')
 
                 elif inst[0] == ';;@brief':
                     line_out = '\n***Description***\n\n' + ' '.join(inst[1:])
@@ -146,7 +146,7 @@ def transform(content):
 
                 elif ';;@input' in inst[0]:
                     if def_input_found == False:
-                        line_out = '***Input***\n\n'
+                        line_out = '\n***Input***\n\n'
                         def_input_found = True
                     else:
                         line_out = ""
@@ -525,8 +525,11 @@ def transform(content):
 path_to_file = ""
 filename = ""
 
+if len(sys.argv) == 1:
+    print("Usage:\npython3 ca65todoc.py mysrctoparse.s myoutputfile.md")
+    exit(0)
 
-if len(sys.argv) != 3:
+elif len(sys.argv) != 3:
     filename = fileinput.input()
     line_out = transform(filename)
 else:

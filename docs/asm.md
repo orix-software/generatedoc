@@ -20,6 +20,13 @@ Parser detect ';;@' lines
     ;;@returnsA XX
     ;;@returnsX XX
     ;;@returnsY XX
+    ;;@note bla
+    ;;@failure bla
+    ;;@bug bla
+    ;;@``` jsr xxx':
+    ;;@` bla
+    ;;@```'
+    ;;@explain bla
 .endproc
 ```
 
