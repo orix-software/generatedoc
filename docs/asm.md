@@ -23,9 +23,12 @@ Parser detect ';;@' lines
     ;;@note bla
     ;;@failure bla
     ;;@bug bla
-    ;;@``` jsr xxx':
-    ;;@` bla
-    ;;@```'
+    ;;@```asm
+    ;;@` lda bms_ptr
+    ;;@` ldx bms_ptr + 1
+    ;;@` jsr bms_free
+    ;;@` rts
+    ;;@```
     ;;@explain bla
 .endproc
 ```

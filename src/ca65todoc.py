@@ -104,12 +104,15 @@ def transform(content):
                     line_out = '!!! failure "' + ' '.join(inst[1:]) + '"'
 
                 elif ';;@```' in inst[0]:
-                    if inst[0] == ';;@```':
+                    # if inst[0] == ';;@```':
+                    #     line_out = '\n```'
+                    #     line_out =  line_out + '\n'
+                    if inst[0] == ';;@```asm':
+                        #line_out = ''.join(inst[0:])
+                        line_out =  '\n***Example***\n\n```asm'
+                    elif inst[0] == ';;@```':
                         line_out = '\n```'
                         line_out =  line_out + '\n'
-                    elif inst[0] == ';;@```asm':
-                        line_out = ''.join(inst[0:])
-                        line_out =  '\n***Example***\n\n' + line_out.replace(';;@asm','')
 
                 elif ';;@`' in inst[0]:
                     line_out = ' '.join(inst[0:])
@@ -135,7 +138,7 @@ def transform(content):
 
                     if ';;@modifyMEM_' in inst[0]:
                         memory = inst[0] .split('_')
-                        line_out = line_out + '* ' +  memory[1] + ' '.join(inst[1:]) + '\n'
+                        line_out = line_out + '* ' + memory[1] + ' '.join(inst[1:]) + '\n'
 
                     if inst[0] == ';;@modifyA':
                         line_out = line_out + '* Accumulator ' + ' '.join(inst[1:])

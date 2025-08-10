@@ -72,7 +72,7 @@ def transform(content):
                 else:
                     line_out = line[1:]
 
-                    # Au cas oÃ¹ il manque un ' ' entre le ';' et le commentaire
+                    # Au cas où il manque un ' ' entre le ';' et le commentaire
                     #if len(inst[0]) > 1 and inst[0][1] == ';':
                     #    line_out += inst[0][1:]
                     #    print('----', line)
@@ -111,32 +111,31 @@ def transform(content):
                     line_out = line_out + '\n'
 
                 elif inst[0] == ';;@brief':
-                    line_out = '***Description***\n\n'+ ' '.join(inst[1:])
+                    line_out = '\n\n***Description***\n\n'+ ' '.join(inst[1:])
                     line_out = line_out + '\n'
 
-                elif ';;@input' in inst[0]:
+                elif inst[0] == ';;@param':
                     if def_input_found == False:
-                        line_out = '***Input***\n\n'
-                        def_input_found == True
+                        line_out = '\n***Input***\n'
+                        def_input_found = True
+
+                    if def_input_found:
+                        line_out = line_out + '\n* ' + ' '.join(inst[1:])
+
+
+                elif inst[0] == ';;@returns':
+                    if def_returns_found == False:
+                        line_out = '\n\n***Returns***\n'
+                        def_returns_found = True
                     else:
                         line_out = ""
 
-                    if inst[0] == ';;@inputPARAM':
-                        param = inst[0] .split('_')
-                        line_out = line_out + '*' +  param[1] +' : '+inst[1] +' ' + ' '.join(inst[2:])
+                    if def_returns_found:
+                        line_out = line_out + '\n* ' + ' '.join(inst[1:])
 
-                elif inst[0] == ';;@param':
-                    line_out = '* '+ '*'+inst[1] +'* ' + ' '.join(inst[2:])
-
-                elif inst[0] == ';;@returns':
-                    line_out = '***Returns***\n\n'+ '' + inst[1] +' ' + ' '.join(inst[2:])
-
-                # Appel Ã  une fonction
-                elif inst[0].lower() == 'jsr':
-                    line_out = ''
 
                 # [--- TEST
-                # DÃ©claration d'une zone mÃ©moire
+                # Déclaration d'une zone mémoire
                 elif last_label and inst[0] in var_types:
                     if inst[0] in ['.byte', '.byt']:
 
@@ -499,7 +498,7 @@ if len(line_out) != 0:
         # Écriture de "toto" dans le fichier spécifié
             with open(path_to_file, 'w') as file:
                 file.write(line_out)
-                print(f"'Write into  : {path_to_file}")
+                print(f"Write into  : {path_to_file}")
         except Exception as e:
             print(f"Write error : {e}")
             sys.exit(1)
