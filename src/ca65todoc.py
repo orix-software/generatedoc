@@ -104,11 +104,7 @@ def transform(content):
                     line_out = '!!! failure "' + ' '.join(inst[1:]) + '"'
 
                 elif ';;@```' in inst[0]:
-                    # if inst[0] == ';;@```':
-                    #     line_out = '\n```'
-                    #     line_out =  line_out + '\n'
                     if inst[0] == ';;@```asm':
-                        #line_out = ''.join(inst[0:])
                         line_out =  '\n***Example***\n\n```asm'
                     elif inst[0] == ';;@```':
                         line_out = '\n```'

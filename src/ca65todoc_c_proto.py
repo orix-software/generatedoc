@@ -106,9 +106,26 @@ def transform(content):
                 elif inst[0] == ';;@bug':
                     line_out = '!!! bug "' + ' '.join(inst[1:]) + '"'
 
+                elif inst[0] == ';;@note':
+                    line_out = '\n!!! note "' + ' '.join(inst[1:]) + '"\n'
+
+                elif inst[0] == ';;@failure':
+                    line_out = '!!! failure "' + ' '.join(inst[1:]) + '"'
+
                 elif inst[0] == ';;@proto':
                     line_out = '## '+ ' '.join(inst[1:])
                     line_out = line_out + '\n'
+
+                elif ';;@```' in inst[0]:
+                    if inst[0] == ';;@```code':
+                        line_out =  '\n***Example***\n\n```code'
+                    elif inst[0] == ';;@```':
+                        line_out = '\n```'
+                        line_out =  line_out + '\n'
+
+                elif ';;@`' in inst[0]:
+                    line_out = ' '.join(inst[0:])
+                    line_out = line_out.replace(';;@`','\n')
 
                 elif inst[0] == ';;@brief':
                     line_out = '\n\n***Description***\n\n'+ ' '.join(inst[1:])
