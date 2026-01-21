@@ -165,7 +165,7 @@ def transform(content):
 
                 elif ';;@returns' in inst[0]:
                     if def_return_found == False:
-                        line_out = '\n***Returns***\n\n'
+                        line_out = '\n\n***Returns***\n\n'
                         def_return_found = True
                     else:
                         line_out = ""
