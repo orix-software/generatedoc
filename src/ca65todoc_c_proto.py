@@ -113,7 +113,7 @@ def transform(content):
                     line_out = '!!! failure "' + ' '.join(inst[1:]) + '"'
 
                 elif inst[0] == ';;@proto':
-                    line_out = '## '+ ' '.join(inst[1:])
+                    #line_out = '## '+ ' '.join(inst[1:])
                     line_out = line_out + '\n'
 
                 elif ';;@```' in inst[0]:
