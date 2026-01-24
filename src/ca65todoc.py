@@ -346,8 +346,8 @@ def transform(content):
                     proc_name = inst[1]
                     if proc_name[0] == '_':
                         def_proc = False
-                    else:
-                        line_out = "---\n\n" + "## " + proc_name + '\n'
+#                    else:
+#                        line_out = "---\n\n" + "## " + proc_name + '\n'
 
                 elif inst[0] == '.struct':
                     def_struct = True
