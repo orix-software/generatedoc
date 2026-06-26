@@ -498,6 +498,8 @@ def transform(content):
                         last_label = ''
                     line_out = ''
         line_out_all += line_out
+    line_out_all += "---\nhide:\n  - toc\n---\n" + line_out_all 
+    
     return line_out_all
 
 
