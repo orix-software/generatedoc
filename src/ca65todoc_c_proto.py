@@ -49,6 +49,7 @@ def transform(content):
     last_label = ''
     line_out = ''
     lines = content.splitlines()
+    param_input = 0
     for line in lines:
         line_out = ''
         line = line.rstrip()
@@ -103,6 +104,11 @@ def transform(content):
                     proc_name = ''
                     line_out = '\n'
 
+                elif inst[0] == ';;@details':
+                    line_out = '## ' + ' '.join(inst[1:])
+                    line_out = line_out + '\n'
+
+
                 elif inst[0] == ';;@bug':
                     line_out = '!!! bug "' + ' '.join(inst[1:]) + '"'
 
@@ -113,14 +119,14 @@ def transform(content):
                     line_out = '!!! failure "' + ' '.join(inst[1:]) + '"'
 
                 elif inst[0] == ';;@proto':
-                    line_out = '## '+ ' '.join(inst[1:])
+                    line_out = '## Syntax\n\n' + ' '.join(inst[1:])
                     line_out = line_out + '\n'
 
                 elif ';;@```' in inst[0]:
                     if inst[0] == ';;@```code':
-                        line_out =  '\n***Example***\n\n```code'
+                        line_out =  '\n***Example***\n\n```c\n'
                     elif inst[0] == ';;@```':
-                        line_out = '\n```'
+                        line_out = '\n```\n'
                         line_out =  line_out + '\n'
 
                 elif ';;@`' in inst[0]:
@@ -132,14 +138,21 @@ def transform(content):
                     line_out = line_out + '\n'
 
                 elif inst[0] == ';;@param':
+                    # | Method      | Description                          |
+                    # | ----------- | ------------------------------------ |
+                    # | `GET`       | :material-check:     Fetch resource  |
+                    # | `PUT`       | :material-check-all: Update resource |
+                    # | `DELETE`    | :material-close:     Delete resource |
                     if def_input_found == False:
-                        line_out = '\n***Input***\n'
+                        line_out = '\n***Input***\n| param      | Description                          |\n| ----------- | ------------------------------------ |\n'
                         def_input_found = True
 
                     if def_input_found:
-                        line_out = line_out + '\n* ' + ' '.join(inst[1:])
+                        line_out = line_out + '\n' + '|  X       | Fetch resource  |'.join(inst[1:] + '|')
+                    param_input = param_input + 1
 
-
+                elif inst[0] == ';;@file':
+                    line_out = line_out + '\n* ' + ' '.join(inst[1:])
                 elif inst[0] == ';;@returns':
                     if def_returns_found == False:
                         line_out = '\n\n***Returns***\n'
