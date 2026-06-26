@@ -108,6 +108,9 @@ def transform(content):
                     line_out = '## ' + ' '.join(inst[1:])
                     line_out = line_out + '\n'
 
+                elif inst[0] == ';;@file':
+                    line_out = 'File :  "' + ' '.join(inst[1:]) + '"'
+                
 
                 elif inst[0] == ';;@bug':
                     line_out = '!!! bug "' + ' '.join(inst[1:]) + '"'
@@ -148,7 +151,13 @@ def transform(content):
                         def_input_found = True
 
                     if def_input_found:
-                        line_out = line_out + '\n' + '|  X       | Fetch resource  |'.join(inst[1:] + '|')
+                        my_split = ' '.join(inst[1:].split(' ')
+                        if len(my_split) != 0:
+                            if len(my_split) == 1:
+                                line_out = line_out + '\n' + f'| {my_split[0]} | |'
+                            else:
+                                line_out = line_out + '\n' + f'| {my_split[0]} | {my_split[1]} |'
+                        
                     param_input = param_input + 1
 
                 elif inst[0] == ';;@file':
