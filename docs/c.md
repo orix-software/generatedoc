@@ -11,7 +11,7 @@ Sample :
     ;;@file socket.h
     ;;@details 
     ;;@bug
-    ;;@inputPARAM_flags
+    ;;@param flags blabla
     ;;@explain
     ;;@returns
     ;;@```code
@@ -44,20 +44,11 @@ Since 2026.3, more description if necessary
 
 Describe a bug
 
-## inputPARAM_
+## @param
 
-input param the string after "_" is the name of the variable
+;;@param flags
 
-;;@inputPARAM_flags
-
-The type can be added : 
-
-;;@inputPARAM_flags_int
-
-or 
-;;@inputPARAM_flags_*Window
-
-## explain
+## @explain
 
 Explain how it works
 
