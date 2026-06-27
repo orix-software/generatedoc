@@ -105,7 +105,7 @@ def transform(content):
                     line_out = '\n'
 
                 elif inst[0] == ';;@details':
-                    line_out = '## ' + ' '.join(inst[1:])
+                    line_out = '## Details\n' + ' '.join(inst[1:])
                     line_out = line_out + '\n'
 
                 elif inst[0] == ';;@file':
@@ -137,7 +137,7 @@ def transform(content):
                     line_out = line_out.replace(';;@`','\n')
 
                 elif inst[0] == ';;@brief':
-                    line_out = '\n\n***Description***\n\n'+ ' '.join(inst[1:])
+                    line_out = '\n\n## Description\n\n'+ ' '.join(inst[1:])
                     line_out = line_out + '\n'
 
                 elif inst[0] == ';;@param':
@@ -147,18 +147,17 @@ def transform(content):
                     # | `PUT`       | :material-check-all: Update resource |
                     # | `DELETE`    | :material-close:     Delete resource |
                     if def_input_found == False:
-                        line_out = '\n***Input***\n| param      | Description                          |\n| ----------- | ------------------------------------ |\n'
+                        line_out = '\n## Input\n\n| param      | Description                          |\n| ----------- | ------------------------------------ |\n'
                         def_input_found = True
 
                     if def_input_found:
-                        my_split = ' '.join(inst[1:].split(' ')
-                        if len(my_split) != 0:
-                            if len(my_split) == 1:
-                                line_out = line_out + '\n' + f'| {my_split[0]} | |'
+                        if len(inst) != 0:
+                            if len(inst) == 1:
+                                line_out = line_out + f'| {inst[1]} | |\n'
                             else:
-                                line_out = line_out + '\n' + f'| {my_split[0]} | {my_split[1]} |'
-                        
-                    param_input = param_input + 1
+                                line_out = line_out + f'| {inst[1]} | {inst[2]} |\n'
+
+
 
                 elif inst[0] == ';;@file':
                     line_out = line_out + '\n* ' + ' '.join(inst[1:])
@@ -349,8 +348,6 @@ def transform(content):
 
                     #line_out = 'typedef struct {'
 
-                elif inst[0] == ';;@param':
-                    line_out = ''
 
                 elif inst[0] == '.macro':
                     def_macro = True
@@ -507,8 +504,8 @@ def transform(content):
                         last_label = ''
                     line_out = ''
         line_out_all += line_out
-    line_out_all += "---\nhide:\n  - toc\n---\n" + line_out_all 
-    
+    line_out_all += "---\nhide:\n  - toc\n---\n" 
+
     return line_out_all
 
 
