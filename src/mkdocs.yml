@@ -1,4 +1,4 @@
-site_name: FIXME DOCUMENTATION
+site_name: {NAME} DOCUMENTATION
 
 markdown_extensions:
     - pymdownx.highlight
@@ -39,7 +39,7 @@ site_dir: api/
 theme:
     name: material
     #logo: favicon.png
-    custom_dir: overrides
+    #custom_dir: overrides
     highlightjs: true
     palette:
         primary: black
@@ -53,8 +53,8 @@ nav:
     - Introduction: index.md
 
 
-extra_css:
-    - stylesheets/extra.css
+#extra_css:
+ #   - stylesheets/extra.css
 
 extra:
   version:
