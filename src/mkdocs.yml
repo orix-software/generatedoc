@@ -51,10 +51,7 @@ theme:
 
 nav:
     - Introduction: index.md
-    - Versions:
-        - {VERSION}:
-            - Assembly: {VERSION}/assembly.md
-            - C: {VERSION}/c.md
+
 
 extra_css:
     - stylesheets/extra.css
