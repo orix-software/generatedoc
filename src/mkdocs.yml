@@ -1,0 +1,66 @@
+site_name: FIXME DOCUMENTATION
+
+markdown_extensions:
+    - pymdownx.highlight
+    - pymdownx.inlinehilite
+    - pymdownx.tabbed:
+        alternate_style: true
+    - pymdownx.snippets
+    - pymdownx.critic
+    - pymdownx.caret
+    - pymdownx.keys
+    - pymdownx.mark
+    - pymdownx.tilde
+    - attr_list
+    - md_in_html
+    - admonition
+    - pymdownx.details
+    - pymdownx.superfences:
+        custom_fences:
+          - name: mermaid
+            class: mermaid
+            format: !!python/name:pymdownx.superfences.fence_code_format
+    - tables
+    - pymdownx.emoji:
+        emoji_index: !!python/name:materialx.emoji.twemoji
+        emoji_generator: !!python/name:materialx.emoji.to_svg
+
+plugins:
+ - git-revision-date
+ - search
+ - markmap
+ - mkdocs-video
+
+
+dev_addr: '172.30.72.43:8001'
+
+docs_dir: code/
+site_dir: api/
+theme:
+    name: material
+    #logo: favicon.png
+    custom_dir: overrides
+    highlightjs: true
+    palette:
+        primary: black
+        scheme: default
+    features:
+        - navigation.tabs
+        - navigation.top
+        - content.tabs.link
+
+nav:
+    - Introduction: index.md
+    - Versions:
+        - {VERSION}:
+            - Assembly: {VERSION}/assembly.md
+            - C: {VERSION}/c.md
+
+extra_css:
+    - stylesheets/extra.css
+
+extra:
+  version:
+    provider: mike
+    alias:
+      dev: "{VERSION}"
