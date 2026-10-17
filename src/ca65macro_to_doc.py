@@ -52,7 +52,7 @@ def transform(content):
             inst = line.split()
             nb_inst = len(inst)
 
-            line_out = '# Macros\n\n'
+            line_out = ''
 
             # pprint(inst)
             if def_bloc:
@@ -497,7 +497,7 @@ def transform(content):
 
             i = i + 1
             line_out_all += line_out
-    return line_out_all
+    return "# Macros\n\n" + line_out_all
 
 
 path_to_file = ""
