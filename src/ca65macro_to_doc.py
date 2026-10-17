@@ -109,7 +109,9 @@ def transform(content):
                     elif inst[0] == ';;@```':
                         line_out = '\n```'
                         line_out =  line_out + '\n'
-
+                elif inst[0] == ';;@proto':
+                    line_out = '## Syntax\n\n' + ' '.join(inst[1:])
+                    line_out = line_out + '\n'
                 elif ';;@`' in inst[0]:
                     line_out = ' '.join(inst[0:])
                     line_out = line_out.replace(';;@`','\n')
