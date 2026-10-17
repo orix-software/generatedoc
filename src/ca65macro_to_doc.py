@@ -352,8 +352,6 @@ def transform(content):
                     def_return_found = False
                     def_input_found = False
                     def_modify_found = False
-
-
                     proc_name = inst[1]
                     if proc_name[0] == '_':
                         def_proc = False
@@ -369,23 +367,6 @@ def transform(content):
 
                     #line_out = 'typedef struct {'
 
-                elif inst[0] == ';;@param':
-                    line_out = ''
-
-#                elif inst[0] == '.macro':
-#                    def_macro = True
-
-                    #line_out = macro_dcl + ' ' + inst[1] +'('
-
-#                    if nb_inst > 2:
-#                        if macro_dcl != '#define':
-#                            line_out += ''
-#                        else:
-#                            line_out += ''
-
-#                    line_out += ''
-#                    if macro_dcl != '#define':
-#                        line_out += ''
 
                 elif inst[0] == '.define':
                     # ATTENTION: un commentaire Ã  la fin de la ligne peut poser problÃ¨me
@@ -410,8 +391,6 @@ def transform(content):
 
                     else:
                         line_out = ''
-
-
                 # Déclaration d'une zone mémoire
                 elif last_label and inst[0].lower() in var_types:
                     inst[0] = inst[0].lower()
@@ -479,7 +458,6 @@ def transform(content):
                             last_label = inst[0]
                             line_out = ''
 
-
                 elif nb_inst >= 3:
                     # Déclaration d'une variable / label
                     if inst[1] in ['=', ':=']:
@@ -496,14 +474,6 @@ def transform(content):
                                 line_out = ''
                             else:
                                 line_out = ''
-
-                    #elif inst[1] == ':=':
-                    #    if nb_inst > 3 and inst[3] == ';':
-                    #        line_out = '/** ' + ' '.join(inst[4:]) + ' */ '
-                    #        line_out += '#define ' + inst[0] + ' ' + inst[2]
-
-                    #    else:
-                    #        line_out = '#define '+inst[0] + ' ' + ' '.join(inst[2:])
 
                     elif inst[1] == ';':
                         if inst[0][-1] == ':':
@@ -536,7 +506,7 @@ path_to_file = ""
 filename = ""
 
 if len(sys.argv) == 1:
-    print("Usage:\npython3 ca65todoc.py mysrctoparse.s myoutputfile.md")
+    print("Usage:\npython3 ca65macro_to_doc.py mysrctoparse.s myoutputfile.md")
     exit(0)
 
 elif len(sys.argv) != 3:
