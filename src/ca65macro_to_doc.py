@@ -497,7 +497,7 @@ def transform(content):
 
             i = i + 1
             line_out_all += line_out
-    return "# Macros\n\n" + line_out_all
+    return line_out_all
 
 
 path_to_file = ""
@@ -509,7 +509,7 @@ if len(sys.argv) == 1:
 
 elif len(sys.argv) != 3:
     filename = fileinput.input()
-    line_out = transform(filename)
+    line_out = "# Macros\n\n" + transform(filename)
 else:
     filename = sys.argv[1]
     path_to_file = sys.argv[2]
