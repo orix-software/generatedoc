@@ -52,7 +52,7 @@ def transform(content):
             inst = line.split()
             nb_inst = len(inst)
 
-            line_out = ''
+            line_out = '# Macros\n\n'
 
             # pprint(inst)
             if def_bloc:
@@ -110,14 +110,14 @@ def transform(content):
                         line_out = '\n```'
                         line_out =  line_out + '\n'
                 elif inst[0] == ';;@proto':
-                    line_out = '## Syntax\n\n' + ' '.join(inst[1:])
+                    line_out = '### Syntax\n\n' + ' '.join(inst[1:])
                     line_out = line_out + '\n'
                 elif ';;@`' in inst[0]:
                     line_out = ' '.join(inst[0:])
                     line_out = line_out.replace(';;@`','\n')
 
                 elif inst[0] == ';;@brief':
-                    line_out = '\n***Description***\n\n' + ' '.join(inst[1:])
+                    line_out = '\n### Description\n\n' + ' '.join(inst[1:])
                     line_out =  line_out + '\n\n'
 
                 elif inst[0] == ';;@explain':
@@ -125,9 +125,9 @@ def transform(content):
                     line_out =  line_out + '\n'
 
                 elif inst[0] == ';;@param':
-                    line_out = '* '+ '*'+inst[1] + '* ' + ' '.join(inst[2:])
+                    line_out = '* '+ '*' + inst[1] + '* ' + ' '.join(inst[2:])
                     if def_input_found == False:
-                        line_out_next = '\n## Input\n\n| param      | Description                          |\n| ----------- | ------------------------------------ |\n'
+                        line_out_next = '\n### Input\n\n| param      | Description                          |\n| ----------- | ------------------------------------ |\n'
                         def_input_found = True
 
                     if def_input_found:
@@ -139,7 +139,7 @@ def transform(content):
                 
                 elif ';;@modify' in inst[0]:
                     if def_modify_found == False:
-                        line_out = '\n\n***Modify***\n\n'
+                        line_out = '\n\n### Modify\n\n'
                         def_modify_found = True
                     else:
                         line_out = ""
@@ -157,7 +157,7 @@ def transform(content):
 
                 elif ';;@input' in inst[0]:
                     if def_input_found == False:
-                        line_out = '\n***Input***\n\n'
+                        line_out = '\n### Input\n\n'
                         def_input_found = True
                     else:
                         line_out = ""
@@ -177,7 +177,7 @@ def transform(content):
 
                 elif ';;@returns' in inst[0]:
                     if def_return_found == False:
-                        line_out = '\n\n***Returns***\n\n'
+                        line_out = '\n\n### Returns\n\n'
                         def_return_found = True
                     else:
                         line_out = ""
