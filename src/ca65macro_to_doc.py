@@ -125,11 +125,9 @@ def transform(content):
                     line_out =  line_out + '\n'
 
                 elif inst[0] == ';;@param':
-                    line_out = '* '+ '*' + inst[1] + '* ' + ' '.join(inst[2:])
                     if def_input_found == False:
-                        line_out_next = '\n### Input\n\n| param      | Description                          |\n| ----------- | ------------------------------------ |\n'
+                        line_out = '\n### Input\n\n| param      | Description                          |\n| ----------- | ------------------------------------ |\n'
                         def_input_found = True
-
                     if def_input_found:
                         if len(inst) != 0:
                             if len(inst) == 1:
