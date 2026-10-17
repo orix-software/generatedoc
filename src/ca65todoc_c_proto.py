@@ -155,7 +155,7 @@ def transform(content):
                             if len(inst) == 1:
                                 line_out = line_out + f'| {inst[1]} | |\n'
                             else:
-                                line_out = line_out + f'| {inst[1]} | {inst[2]} |\n'
+                                line_out = line_out + f"| {inst[1]} | " + " ".join(inst[2:]) +  " |\n"
 
 
 
