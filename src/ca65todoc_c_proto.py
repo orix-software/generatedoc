@@ -138,7 +138,7 @@ def transform(content):
 
                 elif inst[0] == ';;@brief':
                     line_out = '\n\n## Description\n\n'+ ' '.join(inst[1:])
-                    line_out = line_out + '\n'
+                    line_out = line_out + '\n\n'
 
                 elif inst[0] == ';;@param':
                     # | Method      | Description                          |
