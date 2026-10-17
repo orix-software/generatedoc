@@ -118,7 +118,7 @@ def transform(content):
 
                 elif inst[0] == ';;@brief':
                     line_out = '\n***Description***\n\n' + ' '.join(inst[1:])
-                    line_out =  line_out + '\n'
+                    line_out =  line_out + '\n\n'
 
                 elif inst[0] == ';;@explain':
                     line_out =  ' '.join(inst[1:])
@@ -126,7 +126,17 @@ def transform(content):
 
                 elif inst[0] == ';;@param':
                     line_out = '* '+ '*'+inst[1] + '* ' + ' '.join(inst[2:])
+                    if def_input_found == False:
+                        line_out_next = '\n## Input\n\n| param      | Description                          |\n| ----------- | ------------------------------------ |\n'
+                        def_input_found = True
 
+                    if def_input_found:
+                        if len(inst) != 0:
+                            if len(inst) == 1:
+                                line_out = line_out + f'| {inst[1]} | |\n'
+                            else:
+                                line_out = line_out + f"| {inst[1]} | " + " ".join(inst[2:]) +  " |\n"
+                
                 elif ';;@modify' in inst[0]:
                     if def_modify_found == False:
                         line_out = '\n\n***Modify***\n\n'
